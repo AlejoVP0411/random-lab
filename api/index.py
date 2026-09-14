@@ -15,9 +15,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include both with and without /api prefix to handle various rewrite setups
+# The FastAPI function receives dynamic paths directly. Static files in public/
+# take precedence on Vercel, while this router owns every /api endpoint.
 app.include_router(random_lab_api.router, prefix="/api")
-app.include_router(random_lab_api.router)
 
 
 @app.get("/")

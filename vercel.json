@@ -1,11 +1,4 @@
 {
   "version": 2,
-  "buildCommand": "cd frontend && corepack pnpm install --frozen-lockfile && corepack pnpm run build",
-  "outputDirectory": "frontend/out",
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/index.py"
-    }
-  ]
+  "buildCommand": "mkdir -p public && cd frontend && corepack pnpm install --frozen-lockfile && corepack pnpm run build && cp -R out/. ../public/"
 }
