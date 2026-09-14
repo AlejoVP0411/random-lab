@@ -15,8 +15,20 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# The FastAPI function receives dynamic paths directly. Static files in public/
-# take precedence on Vercel, while this router owns every /api endpoint.
+
+@app.middleware("http")
+async def restore_api_path_after_vercel_rewrite(request, call_next):
+    """Remove the Vercel function path before FastAPI matches application routes."""
+    function_path = "/api/index.py"
+    path = request.scope["path"]
+    if path == function_path or path.startswith(f"{function_path}/"):
+        restored_path = path.removeprefix(function_path) or "/"
+        request.scope["path"] = restored_path
+        request.scope["raw_path"] = restored_path.encode()
+    return await call_next(request)
+
+
+# Static files in public/ own the frontend; this router owns every /api endpoint.
 app.include_router(random_lab_api.router, prefix="/api")
 
 
