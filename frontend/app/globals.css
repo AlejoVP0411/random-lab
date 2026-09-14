@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes reveal { from { opacity: 0; transform: translateY(12px) } to { opacity: 1; transform: translateY(0) } }
+* { box-sizing: border-box; }
+body { @apply min-h-screen bg-[#080b14] text-slate-100 antialiased; background-image: radial-gradient(circle at 12% 10%, rgba(80, 70, 229, .25), transparent 28rem), radial-gradient(circle at 88% 5%, rgba(15, 186, 171, .13), transparent 24rem); }
+input { @apply w-full rounded-xl border border-white/10 bg-white/[.055] px-3.5 py-2.5 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-400/70 focus:ring-2 focus:ring-cyan-400/15; }
+.card { @apply rounded-3xl border border-white/10 bg-slate-950/45 p-5 shadow-2xl shadow-black/20 backdrop-blur-xl md:p-6; }
+.fade-in { animation: reveal .45s ease-out both; }
