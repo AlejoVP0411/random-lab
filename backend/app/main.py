@@ -8,7 +8,11 @@ from .generators.middle_product import MiddleProductConfig, generate as generate
 from .generators.multiplicative import MultiplicativeConfig, generate as generate_multiplicative
 from .tests import poker, runs
 
-app = FastAPI(title="Random Lab API")
+app = FastAPI(
+    title="Random Lab API",
+    docs_url="/api/docs",
+    openapi_url="/api/openapi.json",
+)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],
@@ -34,12 +38,12 @@ class TestRequest(BaseModel):
     values: list[float] = Field(min_length=2, max_length=10_000)
 
 
-@app.get("/health")
+@app.get("/api/health")
 def health():
     return {"status": "ok"}
 
 
-@app.post("/generate")
+@app.post("/api/generate")
 def generate(request: GenerateRequest):
     try:
         if request.method == "multiplicative":
@@ -55,7 +59,7 @@ def generate(request: GenerateRequest):
         raise HTTPException(status_code=422, detail=str(error)) from error
 
 
-@app.post("/test")
+@app.post("/api/test")
 def test(request: TestRequest):
     if any(value < 0 or value >= 1 for value in request.values):
         raise HTTPException(status_code=422, detail="Los valores deben estar en el intervalo [0, 1).")
