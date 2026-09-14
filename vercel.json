@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "cd frontend && pnpm install && pnpm run build",
+  "buildCommand": "cd frontend && corepack pnpm install --frozen-lockfile && corepack pnpm run build",
   "outputDirectory": "frontend/out",
   "rewrites": [
     {
