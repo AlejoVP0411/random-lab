@@ -20,7 +20,7 @@ def generate(config: MultiplicativeConfig) -> list[float]:
     if config.multiplier <= 0:
         raise ValueError("El multiplicador debe ser mayor que 0.")
 
-    state = config.seed % config.modulus
+    state = config.seed
     values: list[float] = []
     for _ in range(config.count):
         state = (config.multiplier * state) % config.modulus
