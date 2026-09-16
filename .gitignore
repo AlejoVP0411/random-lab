@@ -1,7 +1,11 @@
 frontend/node_modules/
 frontend/.next/
+frontend/out/
+public/
 frontend/.npm-cache/
 frontend/.pnpm-home/
 frontend/node_modules-pnpm/
 backend/.venv/
 backend/**/__pycache__/
+api/**/__pycache__/
+.venv/

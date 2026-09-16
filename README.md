@@ -30,8 +30,8 @@ npm install
 npm run dev
 ```
 
-Abre `http://localhost:3000`. La documentación interactiva de la API queda disponible en `http://localhost:8000/docs`.
+Abre `http://localhost:3000`. La documentación interactiva de la API queda disponible en `http://localhost:8000/api/docs`.
 
 ## Despliegue en Vercel
 
-El archivo `vercel.json` compila el frontend y expone el backend FastAPI como función serverless bajo `/api`. En producción no es necesario configurar `NEXT_PUBLIC_API_URL`: la interfaz se conecta a esa ruta automáticamente.
+El archivo `vercel.json` configura servicios separados para el frontend Next.js y el backend FastAPI. Las solicitudes a `/api/*` se dirigen al backend; las demás se dirigen al frontend. En producción no es necesario configurar `NEXT_PUBLIC_API_URL`: la interfaz se conecta a esa ruta automáticamente.
